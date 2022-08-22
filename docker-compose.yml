@@ -1,0 +1,18 @@
+version: '3.2'
+services:
+
+  postfix-smtp:
+    image: juanluisbaptiste/postfix:latest
+    restart: always
+    ports:
+     - "10.1.173.39:25:25"
+    container_name: postfix-smtp
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"   # number of files or file count
+        max-size: "10m" # file size
+    env_file:
+      - postfix.env
+    volumes:
+      - ./logs:/var/log/
